@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ViewModel Example</string>
+    <string name="write_your_name">Write Your Name</string>
+    <string name="increment_counter">Increment Counter</string>
+</resources>
