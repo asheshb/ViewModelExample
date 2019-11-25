@@ -6,7 +6,7 @@
     app:startDestination="@id/home">
     <fragment
         android:id="@+id/home"
-        android:name="com.example.fragmentnavigation.ListFragment"
+        android:name="com.example.viewmodelexample.ListFragment"
         android:label="fragment_list"
         tools:layout="@layout/fragment_list" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/detail"
-        android:name="com.example.fragmentnavigation.DetailFragment"
+        android:name="com.example.viewmodelexample.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" >
         <action
@@ -35,7 +35,7 @@
     </fragment>
     <fragment
         android:id="@+id/checkout"
-        android:name="com.example.fragmentnavigation.CheckoutFragment"
+        android:name="com.example.viewmodelexample.CheckoutFragment"
         android:label="fragment_checkout"
         tools:layout="@layout/fragment_checkout" >
         <action
@@ -53,7 +53,7 @@
     </fragment>
     <fragment
         android:id="@+id/thanks"
-        android:name="com.example.fragmentnavigation.ThanksFragment"
+        android:name="com.example.viewmodelexample.ThanksFragment"
         android:label="fragment_thanks"
         tools:layout="@layout/fragment_thanks" >
         <action

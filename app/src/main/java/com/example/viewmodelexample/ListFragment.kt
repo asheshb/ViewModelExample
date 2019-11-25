@@ -1,4 +1,4 @@
-package com.example.fragmentnavigation
+package com.example.viewmodelexample
 
 
 import android.os.Bundle
@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.viewmodelexample.ListFragmentDirections
 import com.example.viewmodelexample.R
 import com.example.viewmodelexample.products
 

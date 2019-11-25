@@ -1,15 +1,14 @@
-package com.example.fragmentnavigation
-
+package com.example.viewmodelexample
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-import com.example.viewmodelexample.Product
-import com.example.viewmodelexample.R
-import com.example.viewmodelexample.products
+import com.example.viewmodelexample.CheckoutFragmentArgs
+import com.example.viewmodelexample.CheckoutFragmentDirections
 import kotlinx.android.synthetic.main.fragment_checkout.*
 
 
@@ -17,7 +16,9 @@ import kotlinx.android.synthetic.main.fragment_checkout.*
  * A simple [Fragment] subclass.
  */
 class CheckoutFragment : Fragment() {
-    private var quantity = 1
+    private lateinit var viewModel: CheckoutViewModel
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -26,37 +27,38 @@ class CheckoutFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_checkout, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        var product: Product? = null
-        arguments?.let{
-            val args = CheckoutFragmentArgs.fromBundle(it)
-            product = products.find {args.id == it.id }
-        }
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
 
-        product?.let{
+        val id = CheckoutFragmentArgs.fromBundle(requireArguments()).id
+        val viewModelFactory = CheckoutViewModelFactory(id, 1)
+        viewModel = ViewModelProviders.of(this, viewModelFactory)
+            .get(CheckoutViewModel::class.java)
 
-            with(it){
-                product_name.text = name
-                product_price.text = getString(R.string.product_price, price)
-                product_quantity.text = getString(R.string.product_quantity, quantity)
-                order_total.text = getString(R.string.order_total, price)
-                product_image.setImageResource(imageId)
-
-                checkout.setOnClickListener {
-                    findNavController().navigate(CheckoutFragmentDirections.actionCheckoutToThanks(this.id))
-                }
-            }
-        }
+        setData(viewModel.product)
 
         add_quantity.setOnClickListener{
-            quantity++
-            product_quantity.text = getString(R.string.product_quantity, quantity)
+            viewModel.addQty(1)
+            product_quantity.text = getString(R.string.product_quantity, viewModel.qty)
         }
 
-        minus_quantity.setOnClickListener{
-            if(quantity > 1){
-                quantity--
-                product_quantity.text = getString(R.string.product_quantity, quantity)
+        reduce_quantity.setOnClickListener{
+            viewModel.reduceQty(1)
+            product_quantity.text = getString(R.string.product_quantity, viewModel.qty)
+        }
+
+    }
+
+    private fun setData(product: Product?){
+        product?.run{
+            product_name.text = name
+            product_price.text = getString(R.string.product_price, price)
+            product_quantity.text = getString(R.string.product_quantity, viewModel.qty)
+            order_total.text = getString(R.string.order_total, price)
+            product_image.setImageResource(imageId)
+
+            checkout.setOnClickListener {
+                findNavController().navigate(CheckoutFragmentDirections.actionCheckoutToThanks(this.id))
             }
         }
     }

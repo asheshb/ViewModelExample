@@ -1,4 +1,4 @@
-package com.example.fragmentnavigation
+package com.example.viewmodelexample
 
 import android.view.LayoutInflater
 import android.view.View
