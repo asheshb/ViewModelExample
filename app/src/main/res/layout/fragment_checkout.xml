@@ -81,21 +81,45 @@
         android:id="@+id/order_total"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/product_quantity"
+        app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="@+id/product_quantity"
-        app:layout_constraintTop_toBottomOf="@+id/product_quantity"
+        app:layout_constraintTop_toBottomOf="@+id/add_quantity"
         tools:text="@string/order_total" />
 
     <Button
         android:id="@+id/checkout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:text="@string/checkout"
         app:layout_constraintEnd_toEndOf="@+id/order_total"
+        app:layout_constraintHorizontal_bias="0.414"
         app:layout_constraintStart_toStartOf="@+id/order_total"
         app:layout_constraintTop_toBottomOf="@+id/order_total" />
+
+    <Button
+        android:id="@+id/add_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="+"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/product_quantity"
+        app:layout_constraintTop_toBottomOf="@+id/product_quantity" />
+
+    <Button
+        android:id="@+id/minus_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="16dp"
+        android:text="-"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/add_quantity"
+        app:layout_constraintTop_toBottomOf="@+id/product_quantity" />
 </androidx.constraintlayout.widget.ConstraintLayout>

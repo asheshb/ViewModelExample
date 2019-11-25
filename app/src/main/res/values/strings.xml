@@ -3,6 +3,7 @@
 
     <string name="product_image">Product Image</string>
     <string name="product_price">Price: Rs %1$.2f</string>
+    <string name="product_quantity">Quantity: %1$d</string>
     <string name="buy_product">Buy Product</string>
     <string name="checkout">Checkout</string>
     <string name="shopping_cart">Shopping Cart</string>

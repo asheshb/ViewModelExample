@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_checkout.*
  * A simple [Fragment] subclass.
  */
 class CheckoutFragment : Fragment() {
-
+    private var quantity = 1
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,12 +38,25 @@ class CheckoutFragment : Fragment() {
             with(it){
                 product_name.text = name
                 product_price.text = getString(R.string.product_price, price)
+                product_quantity.text = getString(R.string.product_quantity, quantity)
                 order_total.text = getString(R.string.order_total, price)
                 product_image.setImageResource(imageId)
 
                 checkout.setOnClickListener {
                     findNavController().navigate(CheckoutFragmentDirections.actionCheckoutToThanks(this.id))
                 }
+            }
+        }
+
+        add_quantity.setOnClickListener{
+            quantity++
+            product_quantity.text = getString(R.string.product_quantity, quantity)
+        }
+
+        minus_quantity.setOnClickListener{
+            if(quantity > 1){
+                quantity--
+                product_quantity.text = getString(R.string.product_quantity, quantity)
             }
         }
     }
