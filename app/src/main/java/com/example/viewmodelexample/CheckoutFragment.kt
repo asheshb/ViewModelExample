@@ -33,7 +33,7 @@ class CheckoutFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         val id = CheckoutFragmentArgs.fromBundle(requireArguments()).id
-        val viewModelFactory = CheckoutViewModelFactory(id, 1)
+        val viewModelFactory = CheckoutViewModelFactory(id, 1, this)
 
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(CheckoutViewModel::class.java)
