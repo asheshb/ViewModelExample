@@ -5,12 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-import com.example.viewmodelexample.CheckoutFragmentArgs
-import com.example.viewmodelexample.CheckoutFragmentDirections
 import kotlinx.android.synthetic.main.fragment_checkout.*
 
 
@@ -63,7 +60,7 @@ class CheckoutFragment : Fragment() {
             product_price.text = getString(R.string.product_price, price)
             order_total.text = getString(R.string.order_total, price)
             product_image.setImageResource(imageId)
-
+            product_short_description.text = longDescription
             checkout.setOnClickListener {
                 findNavController().navigate(CheckoutFragmentDirections.actionCheckoutToThanks(this.id))
             }
