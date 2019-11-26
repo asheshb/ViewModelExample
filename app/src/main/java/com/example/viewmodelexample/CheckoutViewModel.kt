@@ -1,9 +1,6 @@
 package com.example.viewmodelexample
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 
 class CheckoutViewModel(id: Int, initialQty: Int, private val handle: SavedStateHandle): ViewModel(){
     companion object {
@@ -25,6 +22,12 @@ class CheckoutViewModel(id: Int, initialQty: Int, private val handle: SavedState
 
         handle.set(ID, id)
         handle.set(QTY, _qty.value)
+    }
+
+    val trimmedDesc: LiveData<String> = Transformations.map(_product, ::trimDesc)
+
+    private fun trimDesc(product: Product): String{
+        return product.longDescription.substring(0, 50).toUpperCase()
     }
 
     fun addQty(newQty: Int){

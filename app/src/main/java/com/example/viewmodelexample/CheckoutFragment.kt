@@ -52,6 +52,11 @@ class CheckoutFragment : Fragment() {
             viewModel.reduceQty(1)
         }
 
+
+        viewModel.trimmedDesc.observe(viewLifecycleOwner, Observer {
+            product_short_description.text = it
+        })
+
     }
 
     private fun setData(product: Product?){
@@ -60,7 +65,7 @@ class CheckoutFragment : Fragment() {
             product_price.text = getString(R.string.product_price, price)
             order_total.text = getString(R.string.order_total, price)
             product_image.setImageResource(imageId)
-            product_short_description.text = longDescription
+
             checkout.setOnClickListener {
                 findNavController().navigate(CheckoutFragmentDirections.actionCheckoutToThanks(this.id))
             }
