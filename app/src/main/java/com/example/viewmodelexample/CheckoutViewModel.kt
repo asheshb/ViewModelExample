@@ -9,9 +9,7 @@ class CheckoutViewModel(id: Int, initialQty: Int): ViewModel(){
     val qty: LiveData<Int>
         get()  = _qty
 
-    private val _product = MutableLiveData<Product>(products.find {id == it.id })
-    val product: LiveData<Product>
-        get()  = _product
+    val product = MutableLiveData<Product>(products.find {id == it.id })
 
     fun addQty(newQty: Int){
         _qty.value?.let{
