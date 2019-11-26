@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.example.viewmodelexample.CheckoutFragmentArgs
@@ -32,19 +34,25 @@ class CheckoutFragment : Fragment() {
 
         val id = CheckoutFragmentArgs.fromBundle(requireArguments()).id
         val viewModelFactory = CheckoutViewModelFactory(id, 1)
+
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(CheckoutViewModel::class.java)
 
-        setData(viewModel.product)
+        viewModel.product.observe(viewLifecycleOwner, Observer {
+            setData(it)
+        })
+
+        viewModel.qty.observe(viewLifecycleOwner, Observer {
+            product_quantity.text = getString(R.string.product_quantity, it)
+        })
 
         add_quantity.setOnClickListener{
             viewModel.addQty(1)
-            product_quantity.text = getString(R.string.product_quantity, viewModel.qty)
+
         }
 
         reduce_quantity.setOnClickListener{
             viewModel.reduceQty(1)
-            product_quantity.text = getString(R.string.product_quantity, viewModel.qty)
         }
 
     }
@@ -53,7 +61,6 @@ class CheckoutFragment : Fragment() {
         product?.run{
             product_name.text = name
             product_price.text = getString(R.string.product_price, price)
-            product_quantity.text = getString(R.string.product_quantity, viewModel.qty)
             order_total.text = getString(R.string.order_total, price)
             product_image.setImageResource(imageId)
 
