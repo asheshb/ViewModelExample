@@ -5,12 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-import com.example.viewmodelexample.CheckoutFragmentArgs
-import com.example.viewmodelexample.CheckoutFragmentDirections
 import kotlinx.android.synthetic.main.fragment_checkout.*
 
 
@@ -38,6 +35,8 @@ class CheckoutFragment : Fragment() {
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(CheckoutViewModel::class.java)
 
+        //remember to pass viewLifecycleOwner instead of "this" because of onDestroyView called
+        //when going to back stack
         viewModel.product.observe(viewLifecycleOwner, Observer {
             setData(it)
         })
