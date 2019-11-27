@@ -2,8 +2,10 @@ package com.example.viewmodelexample
 
 import androidx.lifecycle.ViewModel
 
-class CheckoutViewModel(id: Int, private var _qty: Int): ViewModel(){
+class CheckoutViewModel(id: Int, initialQuantity: Int): ViewModel(){
     val product: Product? = products.find {id == it.id }
+
+    private var _qty = initialQuantity
 
     val qty: Int
         get()  = _qty
