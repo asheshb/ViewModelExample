@@ -6,11 +6,14 @@ import androidx.lifecycle.ViewModel
 
 class CheckoutViewModel(id: Int, initialQty: Int): ViewModel(){
 
-    private var _qty = MutableLiveData<Int>(initialQty)
+    private val _qty = MutableLiveData<Int>(initialQty)
     val qty: LiveData<Int>
         get()  = _qty
 
-    val product = MutableLiveData<Product>(products.find {id == it.id })
+    private val _product = MutableLiveData<Product>(products.find {id == it.id })
+    val product: LiveData<Product>
+        get()  = _product
+
 
     fun addQty(newQty: Int){
         _qty.value?.let{
