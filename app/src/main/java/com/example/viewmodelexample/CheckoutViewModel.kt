@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 
 class CheckoutViewModel(id: Int, initialQty: Int, private val handle: SavedStateHandle): ViewModel(){
     companion object {
-        private const val ID = "ID_KEY"
         private const val QTY = "QTY_KEY"
     }
     private var _qty = MutableLiveData<Int>()
@@ -20,10 +19,7 @@ class CheckoutViewModel(id: Int, initialQty: Int, private val handle: SavedState
 
     init{
         _qty.value = handle[QTY]?: initialQty
-        val productId = handle[ID]?: id
-        _product.value = products.find {productId == it.id}
-
-        handle.set(ID, id)
+        _product.value = products.find {id == it.id}
         handle.set(QTY, _qty.value)
     }
 
