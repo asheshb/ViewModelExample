@@ -6,7 +6,7 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 
 class CheckoutViewModel(id: Int, initialQty: Int): ViewModel(){
-    private var _qty = MutableLiveData<Int>()
+    private var _qty = MutableLiveData<Int>(initialQty)
     val qty: LiveData<Int>
         get()  = _qty
 
