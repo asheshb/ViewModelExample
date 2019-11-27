@@ -53,7 +53,7 @@ class CheckoutFragment : Fragment() {
             product_quantity.text = getString(R.string.product_quantity, quantity)
         }
 
-        minus_quantity.setOnClickListener{
+        reduce_quantity.setOnClickListener{
             if(quantity > 1){
                 quantity--
                 product_quantity.text = getString(R.string.product_quantity, quantity)
