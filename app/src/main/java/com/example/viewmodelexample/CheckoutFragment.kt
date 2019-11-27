@@ -7,8 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-import com.example.viewmodelexample.CheckoutFragmentArgs
-import com.example.viewmodelexample.CheckoutFragmentDirections
 import kotlinx.android.synthetic.main.fragment_checkout.*
 
 
@@ -31,7 +29,9 @@ class CheckoutFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         val id = CheckoutFragmentArgs.fromBundle(requireArguments()).id
+
         val viewModelFactory = CheckoutViewModelFactory(id, 1)
+
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(CheckoutViewModel::class.java)
 
