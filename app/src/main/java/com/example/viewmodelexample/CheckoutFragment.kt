@@ -7,9 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.viewmodelexample.Product
-import com.example.viewmodelexample.R
-import com.example.viewmodelexample.products
+import com.example.viewmodelexample.*
 import kotlinx.android.synthetic.main.fragment_checkout.*
 
 
