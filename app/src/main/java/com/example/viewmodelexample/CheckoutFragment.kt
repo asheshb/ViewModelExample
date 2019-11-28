@@ -47,7 +47,6 @@ class CheckoutFragment : Fragment() {
 
         add_quantity.setOnClickListener{
             viewModel.addQty(1)
-
         }
 
         reduce_quantity.setOnClickListener{
