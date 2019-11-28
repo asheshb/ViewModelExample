@@ -13,13 +13,12 @@ class CheckoutViewModel(id: Int, initialQty: Int, private val handle: SavedState
     val qty: LiveData<Int>
         get()  = _qty
 
-    private val _product = MutableLiveData<Product>()
+    private val _product = MutableLiveData<Product>(products.find {id == it.id})
     val product: LiveData<Product>
         get()  = _product
 
     init{
         _qty.value = handle[QTY]?: initialQty
-        _product.value = products.find {id == it.id}
         handle.set(QTY, _qty.value)
     }
 
